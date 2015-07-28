@@ -1,0 +1,1 @@
+"use strict";function _init(n){return function(t){for(var i=t.split(/[,;:\s]/),r=[],s=0,o=i.length;o>s;++s){var u=i[s],a=n[u];a?r=r.concat(a.split(/[,;:\s]/)):r.push(u)}return r.join(" ")}}var ExpandJs={init:_init};module.exports=ExpandJs;

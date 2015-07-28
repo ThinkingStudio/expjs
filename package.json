@@ -1,0 +1,49 @@
+{
+  "name": "expjs",
+  "id": "expjs",
+  "version": "0.0.2",
+  "description": "A simple utility for expanding str token with predefined str list",
+  "keywords": [
+    "string",
+    "expand",
+    "interpolation",
+    "replace"
+  ],
+  "author": "Gelin Luo <greenlaw110@gmail.com>",
+  "homepage": "https://github.com/greenlaw110/expjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenlaw110/expjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/greenlaw110/expjs/issues"
+  },
+  "dependencies": {
+    "JSON": "*"
+  },
+  "main": "./expjs.js",
+  "engines": {
+    "node": ">=0.4"
+  },
+  "scripts": {
+    "test": "gulp test-build"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/greenlaw110/expjs/blob/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0",
+    "gulp-mocha": "^2.0.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-streamify": "*",
+    "assert": "*",
+    "should": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "del": "*"
+  }
+}
