@@ -5,18 +5,25 @@ var Exp = require('../expjs.src');
 
 describe('expjs', function() {
 
-  var exp;
-
-  beforeEach(function() {
-    exp = Exp.init({
+  describe('expand', function() {
+    var exp = new Exp({
       'btn': 'fg-dark-color,bg-light-color',
       'btn-reverse': 'fg-light-color,bg-dark-color'
     });
-  });
-
-  describe('expand', function() {
     it('should expand keys defined in rules', function() {
       assert.equal('fg-dark-color bg-light-color btn-default', exp('btn btn-default'));
+    });
+  });
+
+  describe('expand recursively', function() {
+    var exp = new Exp({
+      'btn-primary': 'color-1 color-6-bg',
+      'btn-default': 'font-size-6',
+      'btn-large': 'font-size-3',
+      'btn-primary-default': 'btn-default btn-primary'
+    });
+    it('should expand keys defined in rules recursively', function() {
+      assert.equal('font-size-6 color-1 color-6-bg', exp('btn-primary-default'));
     });
   });
 

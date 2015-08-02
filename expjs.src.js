@@ -1,24 +1,39 @@
 'use strict';
 
-function _init(rule) {
-  return function(str) {
-var strArray = str.split(/[,;:\s]/);
-var ret = [];
-for (var i = 0, j = strArray.length; i < j; ++i) {
-  var key = strArray[i];
-  var expanded = rule[key];
-  if (expanded) {
-    ret = ret.concat(expanded.split(/[,;:\s]/));
-  } else {
-    ret.push(key);
+function Expander(rule) {
+
+  function _expand(str, recursively) {
+    var strArray = str.split(/[,;:\s]/);
+    var ret = [];
+    for (var i = 0, j = strArray.length; i < j; ++i) {
+      var key = strArray[i];
+      var expanded = _rule[key];
+      if (expanded) {
+        var expandedArray = expanded.split(/[,;:\s]/);
+        if (recursively) {
+          for (var x = 0, y = expandedArray.length; x < y; ++x) {
+            ret = ret.concat(_expand(expandedArray[x], true));
+          }
+        } else {
+          ret = ret.concat(expandedArray);
+        }
+      } else {
+        ret.push(key);
+      }
+    }
+    return ret;
   }
-}
-return ret.join(' ');
+
+  var _rule = rule;
+  for (var key in _rule) {
+    var val = _rule[key];
+    _rule[key] = _expand(val, true).join(' ');
+  }
+
+  return function(str) {
+    return _expand(str).join(' ');
   };
+
 }
 
-var ExpandJs = {
-  init: _init
-};
-
-module.exports = ExpandJs;
+module.exports = Expander;
