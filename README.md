@@ -29,7 +29,7 @@ var cm = require('../css-class-mapping-rule');
 var Btn = React.createClass({
   render: function () {
     return (
-       <button className={cm('btn-reverse')}>My button</button>
+       <button className={cm('btn-reverse other-class')}>My button</button>
     );
   }
 });
@@ -38,5 +38,16 @@ var Btn = React.createClass({
 The above reactjs code will yield component looks like
 
 ```html
-<button class='fg-color-light bg-color-dark'>My buttn</button>
+<button class='fg-color-light bg-color-dark other-class'>My buttn</button>
 ```
+
+### Input variants (supported since v0.0.5)
+
+In the above example, you pass the str list in a string separated by white space `cm('btn-reverse other-class')`, expjs also allows you to pass in array or javascript arguments:
+
+```javascript
+<button className={cm(['btn-reverse', otherClass])}>My button</button>
+<button className={cm('btn-reverse', otherClass)}>My button</button>
+```
+
+This will be useful when you are using variables for class name as shown above.
